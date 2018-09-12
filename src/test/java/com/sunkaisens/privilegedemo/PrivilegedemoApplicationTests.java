@@ -20,7 +20,7 @@ public class PrivilegedemoApplicationTests {
 
     @Test
     public void testInsertData() throws Exception {
-        cityService.findCityByName("111");
+        cityService.findCityByName("222");
     }
 
 }
