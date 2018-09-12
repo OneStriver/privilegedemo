@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sunkaisens.privilegedemo.dao.secondDataSource.UserDao">
+    <resultMap id="BaseResultMap" type="com.sunkaisens.privilegedemo.domain.User">
+        <result column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
+    <parameterMap id="User" type="com.sunkaisens.privilegedemo.domain.User"/>
+
+    <sql id="Base_Column_List">
+		id, user_name, description
+	</sql>
+
+    <select id="findUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = 1
+    </select>
+
+    <insert id="insertUserInfo" parameterType="com.sunkaisens.privilegedemo.domain.User">
+        insert into user(id, user_name, description) values (#{id},#{userName},#{description})
+    </insert>
+
+</mapper>

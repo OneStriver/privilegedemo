@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunkaisens.privilegedemo.dao.firstDataSource.CityDao">
+    <resultMap id="BaseResultMap" type="com.sunkaisens.privilegedemo.domain.City">
+        <id column="id" property="id"></id>
+        <result column="province_id" property="provinceId"></result>
+        <result column="city_name" property="cityName"></result>
+        <result column="description" property="description"></result>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,province_id,city_name,description
+    </sql>
+
+    <select id="findCityByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+          <include refid="Base_Column_List"></include>
+        from
+          city
+        where city_name = #{cityName}
+    </select>
+
+    <insert id="insertCityInfo" parameterType="com.sunkaisens.privilegedemo.domain.City">
+        insert into city(id,province_id,city_name,description)
+        values (#{id},#{provinceId},#{cityName},#{description})
+    </insert>
+</mapper>
